@@ -54,8 +54,8 @@ categorias.
 
 `dotnet run`
 
-2.  A API estará disponível no endereço http://localhost:7096 (ou
-    https://localhost:5211 se estiver usando HTTPS).
+2.  A API estará disponível no endereço http://localhost:5211 (ou
+    https://localhost:7096 se estiver usando HTTPS).
 
 ## Endpoints
 
@@ -64,6 +64,12 @@ categorias.
 -   `GET /api/products`: Retorna a lista de todos os produtos.
 
 -   `GET /api/products/{id}`: Retorna um produto específico pelo ID.
+
+-   `GET /api/products/{status}`: Retorna uma lista por status.
+
+-   `GET /api/products/{description}`: Retorna uma lista pela descrição.
+
+-   `GET /api/products/{category}`: Retorna uma lista pela categoria.
 
 -   `POST /api/products`: Adiciona um novo produto.
 
@@ -77,11 +83,21 @@ categorias.
 
 -   `GET /api/categories/{id}`: Retorna uma categoria específica pelo ID.
 
+-   `GET /api/v1/Category/CategoryByStatus/{status}`: Retorna uma lista com todas as categorias pelo status.
+
+-   `GET /api/v1/Category/CategorysByName/{name}`: Retorna umas lista por nome.
+
 -   `POST /api/categories`: Adiciona uma nova categoria.
 
 -   `PUT /api/categories/{id}`: Atualiza uma categoria existente pelo ID.
 
 -   `DELETE /api/categories/{id}`: Remove uma categoria pelo ID.
+
+### AssociateProductWithCategory
+
+-   `POST /api/v1/AssociateProductWithCategory`: Adiciona uma nova associação entre produto e categoria.
+
+-   `DELETE /api/categories/{id}`: Remove a associação entre produto e categoria.
 
 ## Licença
 
