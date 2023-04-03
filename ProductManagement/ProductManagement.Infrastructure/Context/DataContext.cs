@@ -3,7 +3,6 @@ using ProductManagement.Domain.Entites;
 
 namespace ProductManagement.Infrastructure.Context
 {
-
     public class DataContext : DbContext
     {
         public DataContext(DbContextOptions<DataContext> options)

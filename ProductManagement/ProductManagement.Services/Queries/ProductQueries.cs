@@ -22,7 +22,7 @@ namespace ProductManagement.Services.Queries
             using var connection = new SqlConnection(_connectionString);
 
             var query = @"
-            SELECT *
+            SELECT Id,Nome as Name,Descricao as Description,Preco as Price,Situacao as Status
             FROM [Produto]
             WHERE Id = @Id
         ";
@@ -40,7 +40,7 @@ namespace ProductManagement.Services.Queries
             using var connection = new SqlConnection(_connectionString);
 
             var query = @"
-            SELECT *
+            SELECT Id,Nome as Name,Descricao as Description,Preco as Price,Situacao as Status
             FROM [Produto]
             WHERE Situacao = @Status
         ";
@@ -58,10 +58,9 @@ namespace ProductManagement.Services.Queries
             using var connection = new SqlConnection(_connectionString);
 
             var query = @"
-            SELECT *
+            SELECT Id,Nome as Name,Descricao as Description,Preco as Price,Situacao as Status
             FROM [Produto]
-            WHERE Descricao LIKE @Description
-        ";
+            WHERE Descricao LIKE @Description;";
 
             var parameters = new DynamicParameters();
             parameters.Add("@Description", $"%{description}%");

@@ -22,11 +22,11 @@ namespace ProductManagement.Services.Queries
             using var connection = new SqlConnection(_connectionString);
 
             var query = @"
-            SELECT p.*
+            SELECT p.Id,p.Nome as Name,p.Descricao as Description,p.Preco as Price,p.Situacao as Status
             FROM AssociacaoProdutoCategoria ac
             INNER JOIN Produto p ON ac.ProdutoId = p.Id
-            WHERE ac.CategoriaId = @CategoryId AND p.Status = @ActiveStatus
-        ";
+            WHERE ac.CategoriaId = @CategoryId AND p.Situacao = @ActiveStatus
+            ";
 
             var result = await connection.QueryAsync<Product>(query, new { CategoryId = categoryId, ActiveStatus = State.Active.Id });
 

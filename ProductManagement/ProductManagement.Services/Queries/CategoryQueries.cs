@@ -20,15 +20,22 @@ namespace ProductManagement.Services.Queries
         public async Task<Category> GetById(Guid id)
         {
             using var connection = new SqlConnection(_connectionString);
-            var query = "SELECT * FROM Categoria WHERE Id = @Id AND Situacao = @Status";
+
+            var query = "SELECT Id, Nome as Name, Situacao as Status " +
+                        "FROM Categoria " +
+                        "WHERE Id = @Id AND Situacao = @Status";
+            
             var result = await connection.QueryFirstOrDefaultAsync<Category>(query, new { Id = id, Status = State.Active.Id });
+            
             return result;
         }
 
         public async Task<IEnumerable<Category>> GetAllStatus(State status)
         {
             using var connection = new SqlConnection(_connectionString);
-            var query = "SELECT * FROM Categoria WHERE Situacao = @Status";
+            var query = "SELECT Id, Nome as Name, Situacao as Status " +
+                        "FROM Categoria " +
+                        "WHERE Situacao = @Status";
             var result = await connection.QueryAsync<Category>(query, new { Status = status.Id });
             return result;
         }
@@ -36,7 +43,11 @@ namespace ProductManagement.Services.Queries
         public async Task<IEnumerable<Category>> GetAllByName(string name)
         {
             using var connection = new SqlConnection(_connectionString);
-            var query = "SELECT * FROM Categoria WHERE Nome LIKE @Name AND Situacao = @Status";
+
+            var query = "SELECT Id, Nome as Name, Situacao as Status " +
+                        "FROM Categoria " +
+                        "WHERE Nome LIKE @Name AND Situacao = @Status";
+            
             var result = await connection.QueryAsync<Category>(query, new { Name = $"%{name}%", Status = State.Active.Id });
             return result;
         }
